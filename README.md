@@ -1,0 +1,1 @@
+Blog application built with Rails, Hotwire and Tailwind CSS
