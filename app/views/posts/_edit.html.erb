@@ -1,0 +1,7 @@
+<div>
+    <%= form_with model: @post do |form| %>
+        <%= form.label :body %>
+        <%= form.text_area :body %>
+        <%= form.submit "Update Post" %>
+    <% end %>
+</div>

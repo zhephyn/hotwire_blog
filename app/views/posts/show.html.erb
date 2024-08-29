@@ -1,5 +1,5 @@
 <div>
-  <%= @post.body %>
+  <%= render "post", post: @post %>
   <div>
     <%= button_to "Back to Posts", posts_path, method: :get %>
     <%= button_to "Update Post", edit_post_path(@post), method: :get %>

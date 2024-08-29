@@ -1,16 +1,24 @@
-<div>
-  <h1 class="font-bold">Posts</h1>
-  <%= button_to "New Post", new_post_path, method: :get %>
-</div>
-<div>
-  <% @posts.each do |post| %>
-    <div>
-      <%= post.body %>
-    </div>
-    <div>
-      <%= button_to "Show Post", post_path(post), method: :get %>
-      <%= button_to "Update Post", edit_post_path(post), method: :get %>
-      <%= button_to "Delete Post", post_path(post), method: :delete %>
-    <div>
-  <% end %>
+<div class="container mx-auto max-w-2xl">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="font-bold text-3xl">Posts</h1>
+    <%= button_to "New Post", new_post_path, method: :get, class: "bg-blue-700 text-white font-medium rounded-lg px-5 py-2.5 me-2 mb-2" %>
+  </div>
+  <div>
+    <%= turbo_frame_tag do %>
+    <% end %>
+  </div>
+  <div class="space-y-4">
+    <% @posts.each do |post| %>
+      <div class="bg-white shadow-md rounded-lg p-4 w-full">
+        <div class="mb-3">
+          <%= render "post", post: post %>
+        </div>
+        <div class="flex space-x-2 mt-3">
+          <%= button_to "Show", post_path(post), method: :get, class: "bg-blue-800 text-white text-xs px-2 py-1 rounded-lg" %>
+          <%= button_to "Update", edit_post_path(post), method: :get, class: "bg-blue-800 text-white text-xs px-2 py-1 rounded-lg"  %>
+          <%= button_to "Delete", post_path(post), method: :delete, class: "bg-blue-800 text-white text-xs px-2 py-1 rounded-lg"  %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
