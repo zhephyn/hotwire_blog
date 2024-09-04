@@ -14,7 +14,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to @post, notice: "Successfully created post"
+      respond_to do  |format|
+        format.html {redirect_to @post, notice: "Successfully created post"}
+        format.turbo_stream
+      end 
     else
       render :new
     end
@@ -35,8 +38,12 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path, notice: "Successfully deleted post"
+    if @post.destroy
+      respond_to do |format|
+        format.html {redirect_to posts_path, notice: "Successfully deleted post"}
+        format.turbo_stream
+      end
+    end
   end
 
   private
