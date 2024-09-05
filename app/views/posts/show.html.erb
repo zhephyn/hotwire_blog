@@ -1,8 +1,13 @@
-<div>
-  <%= render "post", post: @post %>
-  <div>
-    <%= button_to "Back to Posts", posts_path, method: :get %>
-    <%= button_to "Update Post", edit_post_path(@post), method: :get %>
-    <%= button_to "Delete Post", post_path(@post), method: :delete %>
-  </div>
-</div>
+<%= turbo_frame_tag dom_id(@post) do %>
+<%= turbo_frame_tag "posts" do %>
+  <div class="bg-white shadow-md rounded-lg p-4 w-full">
+    <div class="mb-3">
+      <%= @post.body %>
+    </div>
+    <div class="flex space-x-2 mt-3">
+      <%= button_to "Back to Posts", posts_path, method: :get, class: "bg-blue-800 text-white text-xs px-2 py-1 rounded-lg" %>
+      <%= button_to "Update", edit_post_path(@post), method: :get, data: {turbo_frame: dom_id(@post)}, class: "bg-blue-800 text-white text-xs px-2 py-1 rounded-lg" %>
+      <%= button_to "Delete", post_path(@post), method: :delete, data: { turbo_frame: "posts" }, class: "bg-blue-800 text-white text-xs px-2 py-1 rounded-lg" %>
+    </div>
+<% end %>
+<% end %>

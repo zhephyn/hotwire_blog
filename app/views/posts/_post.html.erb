@@ -4,7 +4,7 @@
       <%= post.body %>
     </div>
     <div class="flex space-x-2 mt-3">
-      <%= button_to "Show", post_path(post), method: :get, class: "bg-blue-800 text-white text-xs px-2 py-1 rounded-lg" %>
+      <%= button_to "Show", post_path(post), method: :get, data: {turbo_frame: "posts" }, class: "bg-blue-800 text-white text-xs px-2 py-1 rounded-lg" %>
       <%= button_to "Update", edit_post_path(post), method: :get, data: {turbo_frame: dom_id(post)}, class: "bg-blue-800 text-white text-xs px-2 py-1 rounded-lg" %>
       <%= button_to "Delete", post_path(post), method: :delete, class: "bg-blue-800 text-white text-xs px-2 py-1 rounded-lg" %>
     </div>
