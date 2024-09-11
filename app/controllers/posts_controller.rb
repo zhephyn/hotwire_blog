@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
+    @post = Post.new
   end
 
   def new
@@ -15,8 +16,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       respond_to do  |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend("posts", partial: "posts/post", locals: {post: @post})
+        end
         format.html {redirect_to @post, notice: "Successfully created post"}
-        format.turbo_stream
       end 
     else
       render :new
@@ -40,8 +43,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.destroy
       respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.remove(@post)
+        end
         format.html {redirect_to posts_path, notice: "Successfully deleted post"}
-        format.turbo_stream
       end
     end
   end

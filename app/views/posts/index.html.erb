@@ -1,19 +1,19 @@
 <div class="container mx-auto max-w-2xl">
   <div class="flex justify-between items-center mb-6">
     <h1 class="font-bold text-3xl">Posts</h1>
-    <%= button_to "New Post", new_post_path, method: :get, data: {turbo_frame: dom_id(Post.new)}, class: "bg-blue-700 text-white font-medium rounded-lg px-5 py-2.5 me-2 mb-2" %>
+    <%= button_to "New Post", new_post_path, method: :get, data: {turbo_frame: dom_id(@post)}, class: "bg-blue-700 text-white font-medium rounded-lg px-5 py-2.5 me-2 mb-2" %>
   </div>
   <div>
-    <%= turbo_frame_tag(dom_id(Post.new)) do %>
+    <%= turbo_frame_tag dom_id(@post) do %>
     <% end %>
   </div>
+
   <div class="space-y-4">
-  
-   <%= turbo_frame_tag "posts" do %>
-    <% @posts.each do |post| %>
-     <%= render "post", post: post %>
+    <%= turbo_frame_tag "posts" do  %>
+      <%= turbo_stream_from "posts" %>
+      <% @posts.each do |post| %>
+          <%= render "post", post: post %>
+      <% end %>
     <% end %>
-  <% end %>
-  
   </div>
 </div>
