@@ -1,0 +1,9 @@
+<% if local_assigns[:message].present? %>
+ <div class="flash-container flex justify-center mt-4">
+  <div class="flash max-w-md w-full p-4 mb-4 mt-2 text-sm text-blue-700 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" 
+      data-controller="flash" 
+      data-flash-target="message">
+    <%= message %>
+  </div>
+ </div>
+<% end %>
