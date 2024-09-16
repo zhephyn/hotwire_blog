@@ -1,12 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 
+// Connects to data-controller="flash"
 export default class extends Controller {
   static targets = ["message"]
 
   connect() {
     setTimeout(() => {
       this.remove()
-    }, 3000) // 3000 milliseconds = 3 seconds
+    }, 3000)
   }
 
   remove() {

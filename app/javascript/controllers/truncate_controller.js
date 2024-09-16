@@ -1,11 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
+// Connects to data-controller="truncate"
 export default class extends Controller {
   static targets = ["content", "link"]
   static values = { limit: Number }
 
   connect() {
-    this.limitValue = this.limitValue || 100  // Default to 100 characters
+    this.limitValue = this.limitValue || 100  
     this.truncateText()
   }
 
@@ -19,7 +20,7 @@ export default class extends Controller {
   }
 
   toggleText(event) {
-    event.preventDefault()  // Prevent any default button behavior
+    event.preventDefault() 
     const fullText = this.contentTarget.dataset.fullText
     if (this.contentTarget.textContent.endsWith("...")) {
       this.contentTarget.textContent = fullText
