@@ -27,7 +27,7 @@ export default class extends Controller {
       this.linkTarget.textContent = "Show less"
     } else {
       this.truncateText()
-      this.linkTarget.textContent = "Show more"
+      this.linkTarget.textContent = "Show More"
     }
   }
 }
